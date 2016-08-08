@@ -9,7 +9,7 @@ import com.jiakaiyang.wallpapergetter.R;
  * Created by admin on 2016/8/8.
  */
 
-public class WallpaperListActivity extends AppCompatActivity {
+public class WallpapersActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
