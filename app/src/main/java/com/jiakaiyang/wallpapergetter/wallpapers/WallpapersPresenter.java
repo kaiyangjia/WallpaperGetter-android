@@ -7,6 +7,6 @@ package com.jiakaiyang.wallpapergetter.wallpapers;
 public class WallpapersPresenter implements WallpapersContract.Presenter {
     @Override
     public void start() {
-        
+
     }
 }
