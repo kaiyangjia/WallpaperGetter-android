@@ -10,6 +10,9 @@ import android.content.res.Resources;
 import android.util.Log;
 import android.util.Pair;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by admin on 2016/8/8.
  */
@@ -27,7 +30,8 @@ public class WallpaperUtils {
      * @param action intent action used to find the apk
      * @return a pair of apk package name and the resources.
      */
-    public static Pair<String, Resources> findSystemApk(String action, PackageManager pm) {
+    public static List<Pair<String, Resources>> findSystemApk(String action, PackageManager pm) {
+        List<Pair<String, Resources>> result = new ArrayList();
         final Intent intent = new Intent(action);
         for (ResolveInfo info : pm.queryBroadcastReceivers(intent, 0)) {
             if (info.activityInfo != null &&
@@ -35,12 +39,12 @@ public class WallpaperUtils {
                 final String packageName = info.activityInfo.packageName;
                 try {
                     final Resources res = pm.getResourcesForApplication(packageName);
-                    return Pair.create(packageName, res);
+                    result.add(Pair.create(packageName, res));
                 } catch (PackageManager.NameNotFoundException e) {
                     Log.w(TAG, "Failed to find resources for " + packageName);
                 }
             }
         }
-        return null;
+        return result;
     }
 }

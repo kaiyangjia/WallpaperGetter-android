@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.jiakaiyang.wallpapergetter.R;
 import com.jiakaiyang.wallpapergetter.utils.WallpaperUtils;
 
+import java.util.List;
+
 /**
  * Created by admin on 2016/8/8.
  */
@@ -23,9 +25,14 @@ public class WallpapersActivity extends AppCompatActivity {
     }
 
     private void test(){
-        Pair<String, Resources> result = WallpaperUtils.findSystemApk("com.android.launcher3.action.PARTNER_CUSTOMIZATION", getPackageManager());
-        String name = result.first;
+        StringBuilder builder = new StringBuilder();
+        List<Pair<String, Resources>> result = WallpaperUtils.findSystemApk("com.android.launcher3.action.PARTNER_CUSTOMIZATION", getPackageManager());
+        for (Pair<String, Resources> pair : result){
+            builder.append(pair.first);
+            builder.append("\n");
+        }
+
         TextView tv = (TextView) findViewById(R.id.txt_msg);
-        tv.setText(name);
+        tv.setText(builder);
     }
 }
